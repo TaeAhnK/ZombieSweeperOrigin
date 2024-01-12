@@ -1,8 +1,11 @@
 //
 #include "PlayerCharacter.h"
 #include "Components/InputComponent.h"
+#include "Components/CapsuleComponent.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
+#include "Camera/CameraComponent.h"
+#include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 
 APlayerCharacter::APlayerCharacter()
@@ -16,6 +19,18 @@ APlayerCharacter::APlayerCharacter()
 	GetCharacterMovement()->bOrientRotationToMovement = true;
 	GetCharacterMovement()->RotationRate = FRotator(0.f, 400.f, 0.f);
 
+	//FirstPersonCameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("FirstPersonCamera"));
+	//FirstPersonCameraComponent->SetupAttachment(GetCapsuleComponent());
+	//FirstPersonCameraComponent->SetRelativeLocation(FVector(35.f, 0.f, 70.f));
+	//FirstPersonCameraComponent->bUsePawnControlRotation = true;
+
+	CameraArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraArm"));
+	CameraArm->SetupAttachment(GetRootComponent());
+	CameraArm->TargetArmLength = 500.f;
+	CameraArm->SetRelativeRotation(FRotator(0.f, -20.f, 0.f));
+
+	ThirdPersonCameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("ThirdPersonCamera"));
+	ThirdPersonCameraComponent->SetupAttachment(CameraArm);
 }
 
 void APlayerCharacter::Tick(float DeltaTime)
@@ -45,6 +60,16 @@ void APlayerCharacter::BeginPlay()
 		{
 			Subsystem->AddMappingContext(InputContext, 0);
 		}
+
+		//if (APlayerCameraManager* CameraManager = PlayerController->PlayerCameraManager)
+		//{
+		//	CameraManager->ViewPitchMin = -80.0f;
+		//	CameraManager->ViewPitchMax = 80.0f;
+
+		//	CameraManager->ViewYawMin = -70.0f;
+		//	CameraManager->ViewYawMax = 70.0f;
+
+		//}
 	}
 }
 
@@ -59,6 +84,9 @@ void APlayerCharacter::Move(const FInputActionValue& Value)
 
 	const FVector RightDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
 	AddMovementInput(RightDirection, MovementVector.X);
+
+	//AddMovementInput(GetActorForwardVector(), MovementVector.Y);
+	//AddMovementInput(GetActorRightVector(), MovementVector.X);
 }
 
 void APlayerCharacter::Turn(const FInputActionValue& Value)

@@ -8,6 +8,8 @@
 
 class UInputMappingContext;
 class UInputAction;
+class UCameraComponent;
+class USpringArmComponent;
 
 UCLASS()
 class ZOMBIESWEEPER_API APlayerCharacter : public ACharacter
@@ -33,4 +35,13 @@ protected:
 
 	UPROPERTY(EditAnywhere, Category = Input)
 	UInputAction* TurnAction;
+
+	//UPROPERTY(EditAnywhere, Category = Camera)
+	//UCameraComponent* FirstPersonCameraComponent;
+
+	UPROPERTY(EditAnywhere)
+	UCameraComponent* ThirdPersonCameraComponent;
+
+	UPROPERTY(EditAnywhere)
+	USpringArmComponent* CameraArm;
 };
