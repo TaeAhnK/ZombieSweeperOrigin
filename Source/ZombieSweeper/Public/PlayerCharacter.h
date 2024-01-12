@@ -24,7 +24,7 @@ public:
 protected:
 	virtual void BeginPlay() override;
 	void Move(const FInputActionValue& Value);
-	void Turn(const FInputActionValue& Value);
+	//void Turn(const FInputActionValue& Value);
 
 
 	UPROPERTY(EditAnywhere, Category = Input)
@@ -33,8 +33,8 @@ protected:
 	UPROPERTY(EditAnywhere, Category = Input)
 	UInputAction* MovementAction;
 
-	UPROPERTY(EditAnywhere, Category = Input)
-	UInputAction* TurnAction;
+	//UPROPERTY(EditAnywhere, Category = Input)
+	//UInputAction* TurnAction;
 
 	//UPROPERTY(EditAnywhere, Category = Camera)
 	//UCameraComponent* FirstPersonCameraComponent;

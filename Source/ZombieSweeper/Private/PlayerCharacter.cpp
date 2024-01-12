@@ -27,7 +27,7 @@ APlayerCharacter::APlayerCharacter()
 	CameraArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraArm"));
 	CameraArm->SetupAttachment(GetRootComponent());
 	CameraArm->TargetArmLength = 500.f;
-	CameraArm->SetRelativeRotation(FRotator(0.f, -20.f, 0.f));
+	CameraArm->SetRelativeRotation(FRotator(0.f, -50.f, 0.f));
 
 	ThirdPersonCameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("ThirdPersonCamera"));
 	ThirdPersonCameraComponent->SetupAttachment(CameraArm);
@@ -46,7 +46,7 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	if (UEnhancedInputComponent* EnhancedInputComponent = CastChecked<UEnhancedInputComponent>(PlayerInputComponent))
 	{
 		EnhancedInputComponent->BindAction(MovementAction, ETriggerEvent::Triggered, this, &APlayerCharacter::Move);
-		EnhancedInputComponent->BindAction(TurnAction, ETriggerEvent::Triggered, this, &APlayerCharacter::Turn);
+		//EnhancedInputComponent->BindAction(TurnAction, ETriggerEvent::Triggered, this, &APlayerCharacter::Turn);
 	}
 }
 
@@ -89,10 +89,10 @@ void APlayerCharacter::Move(const FInputActionValue& Value)
 	//AddMovementInput(GetActorRightVector(), MovementVector.X);
 }
 
-void APlayerCharacter::Turn(const FInputActionValue& Value)
-{
-	const FVector2D LookAxisVector = Value.Get<FVector2D>();
-
-	AddControllerPitchInput(LookAxisVector.Y);
-	AddControllerYawInput(LookAxisVector.X);
-}
+//void APlayerCharacter::Turn(const FInputActionValue& Value)
+//{
+//	//const FVector2D LookAxisVector = Value.Get<FVector2D>();
+//
+//	//AddControllerPitchInput(LookAxisVector.Y);
+//	//AddControllerYawInput(LookAxisVector.X);
+//}
