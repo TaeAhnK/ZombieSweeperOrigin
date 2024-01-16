@@ -28,6 +28,6 @@ void ATile::SetSprite()
     }
     else
     {
-        PaperMesh->SetSprite(TileSprites[0]);
+        //PaperMesh->SetSprite(TileSprites[0]);
     }
 }

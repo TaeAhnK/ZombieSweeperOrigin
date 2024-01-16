@@ -5,6 +5,7 @@
 
 class ZOMBIESWEEPER_API FieldMap
 {
+
 public:
 	FieldMap(int8 Width, int8 Height, FIntPoint StartXY, FIntPoint TargetXY);
 	void PlantZombie(int16 ZNum);

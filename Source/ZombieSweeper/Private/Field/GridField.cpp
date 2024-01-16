@@ -1,6 +1,7 @@
 //
 #include "Field/GridField.h"
 #include "Field/Tile.h"
+#include "Field/FieldMap.h"
 
 AGridField::AGridField()
 {
@@ -12,6 +13,11 @@ void AGridField::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	//if (!MapData)
+	//{
+	//	MapData = new FieldMap(32, 32, FIntPoint(0, 0), FIntPoint(31, 31));
+	//}
+
 	GridArray.SetNumZeroed(GridHeight);
 	for (int32 y = 0; y < GridHeight; y++)
 	{
@@ -20,8 +26,9 @@ void AGridField::BeginPlay()
 		{
 			TSubclassOf<ATile> TileToSpawn = Tile;
 			ATile* NewTile = GetWorld()->SpawnActor<ATile>(TileToSpawn, FVector(FIntPoint(GetActorLocation().X + x * GridOffset, GetActorLocation().X + y * GridOffset)), FRotator::ZeroRotator);
-			UE_LOG(LogTemp, Log, TEXT("%f %f"), GetActorLocation().X, GetActorLocation().Y);
 			NewTile->TileIndex = FIntPoint(x, y);
+			NewTile->TileType = ETileType::TileNotOpen;
+			NewTile->SetSprite();
 			GridArray[y][x] = NewTile;
 		}
 	}
@@ -29,6 +36,5 @@ void AGridField::BeginPlay()
 
 void AGridField::SetTile(int8 X, int8 Y, int8 index)
 {
-	GridArray[Y][X]->TileIndex = index;
-	GridArray[Y][X]->PaperMesh = 
+
 }

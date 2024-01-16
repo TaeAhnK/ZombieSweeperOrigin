@@ -5,6 +5,7 @@
 #include "GameFramework/Actor.h"
 #include "GridField.generated.h"
 
+class FieldMap;
 class ATile;
 
 UCLASS()
@@ -14,11 +15,13 @@ class ZOMBIESWEEPER_API AGridField : public AActor
 	
 public:	
 	AGridField();
+	FieldMap* MapData;
 
 protected:
 	virtual void BeginPlay() override;
 	void SetTile(int8 X, int8 Y, int8 index);
-	//UPROPERTY(EditAnywhere, Category = Grid)
+
+
 	TArray<TArray<ATile*>> GridArray;
 
 	UPROPERTY(EditAnywhere, Category = Grid)
