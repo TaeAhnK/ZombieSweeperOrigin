@@ -5,7 +5,24 @@
 #include "GameFramework/Actor.h"
 #include "Tile.generated.h"
 
-class UStaticMeshComponent;
+class UPaperSprite;
+class UPaperSpriteComponent;
+
+UENUM(BlueprintType)
+enum class ETileType : uint8
+{
+	TileNotOpen,
+	Tile1,
+	Tile2,
+	Tile3,
+	Tile4,
+	Tile5,
+	Tile6,
+	Tile7,
+	Tile8,
+	TileOpen
+};
+
 
 UCLASS()
 class ZOMBIESWEEPER_API ATile : public AActor
@@ -14,10 +31,19 @@ class ZOMBIESWEEPER_API ATile : public AActor
 	
 public:	
 	ATile();
+	void SetSprite();
 
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Tile")
+	ETileType TileType;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Tile")
 	FIntPoint TileIndex;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Tile")
+	TArray<UPaperSprite*> TileSprites;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Tile")
+	UPaperSpriteComponent* PaperMesh;
 protected:
-	UPROPERTY(EditAnywhere)
-	UStaticMeshComponent* TileMesh;
+
 };

@@ -20,8 +20,15 @@ void AGridField::BeginPlay()
 		{
 			TSubclassOf<ATile> TileToSpawn = Tile;
 			ATile* NewTile = GetWorld()->SpawnActor<ATile>(TileToSpawn, FVector(FIntPoint(GetActorLocation().X + x * GridOffset, GetActorLocation().X + y * GridOffset)), FRotator::ZeroRotator);
+			UE_LOG(LogTemp, Log, TEXT("%f %f"), GetActorLocation().X, GetActorLocation().Y);
 			NewTile->TileIndex = FIntPoint(x, y);
 			GridArray[y][x] = NewTile;
 		}
 	}
+}
+
+void AGridField::SetTile(int8 X, int8 Y, int8 index)
+{
+	GridArray[Y][X]->TileIndex = index;
+	GridArray[Y][X]->PaperMesh = 
 }
