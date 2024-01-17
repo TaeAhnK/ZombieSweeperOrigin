@@ -11,7 +11,7 @@ class UPaperSpriteComponent;
 UENUM(BlueprintType)
 enum class ETileType : uint8
 {
-	TileNotOpen,
+	Tile0,
 	Tile1,
 	Tile2,
 	Tile3,
@@ -20,6 +20,7 @@ enum class ETileType : uint8
 	Tile6,
 	Tile7,
 	Tile8,
+	TileNotOpen,
 	TileOpen,
 	TileZombie
 };
