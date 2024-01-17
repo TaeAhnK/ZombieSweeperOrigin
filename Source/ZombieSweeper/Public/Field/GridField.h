@@ -21,7 +21,7 @@ public:
 	FieldMap* MapData;
 
 protected:
-	void SetTile(int8 X, int8 Y, int8 index);
+	void OpenTile(FIntPoint StepIndex);
 	
 	ETileType IndexToTileType(int8 index);
 
@@ -38,4 +38,7 @@ protected:
 
 	UPROPERTY(EditAnywhere, Category = Grid)
 	TSubclassOf<ATile> Tile;
+
+private:
+	bool isValidXY(int8 X, int8 Y);
 };

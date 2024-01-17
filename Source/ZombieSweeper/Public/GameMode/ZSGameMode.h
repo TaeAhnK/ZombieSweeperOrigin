@@ -17,8 +17,6 @@ public:
 	virtual void BeginPlay() override;
 
 	FieldMap* MapData;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	AGridField* Field;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "GameMode")
