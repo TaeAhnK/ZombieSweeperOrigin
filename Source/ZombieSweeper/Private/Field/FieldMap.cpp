@@ -11,6 +11,7 @@ FieldMap::FieldMap(int8 Width, int8 Height, FIntPoint StartXY, FIntPoint TargetX
 	this->TargetXY = TargetXY;
 
 	Map.Init(TArray<int8>(), MapHeight);
+	PlantZombie(200);
 }
 
 void FieldMap::PlantZombie(int16 ZNum)
