@@ -43,7 +43,7 @@ void AGridField::OpenTile(FIntPoint StepIndex)
 
     GridArray[StepIndex.Y][StepIndex.X]->TileType = ETileType::TileOpen;
     GridArray[StepIndex.Y][StepIndex.X]->SetSprite();
-    //콜리전 비활성
+    GridArray[StepIndex.Y][StepIndex.X]->DisableCollision();
     for (int8 i = 0; i < 8; i++)
     {
         if (isValidXY(StepIndex.X + dx[i], StepIndex.Y + dy[i]))
@@ -52,34 +52,43 @@ void AGridField::OpenTile(FIntPoint StepIndex)
             switch (index)
             {
             case 0:
-                if (GridArray[StepIndex.Y + dy[i]][StepIndex.X + dx[i]]->TileType != ETileType::TileOpen)
+                if (GridArray[StepIndex.Y + dy[i]][StepIndex.X + dx[i]]->TileType == ETileType::TileOpen)
                 {
-                    GridArray[StepIndex.Y][StepIndex.X]->TileType = ETileType::Tile0;
+                    break;
                 }
+                GridArray[StepIndex.Y + dy[i]][StepIndex.X + dx[i]]->TileType = ETileType::Tile0;
                 break;
             case 1:
                 GridArray[StepIndex.Y + dy[i]][StepIndex.X + dx[i]]->TileType = ETileType::Tile1;
+                GridArray[StepIndex.Y + dy[i]][StepIndex.X + dx[i]]->DisableCollision();
                 break;
             case 2:
                 GridArray[StepIndex.Y + dy[i]][StepIndex.X + dx[i]]->TileType = ETileType::Tile2;
+                GridArray[StepIndex.Y + dy[i]][StepIndex.X + dx[i]]->DisableCollision();
                 break;
             case 3:
                 GridArray[StepIndex.Y + dy[i]][StepIndex.X + dx[i]]->TileType = ETileType::Tile3;
+                GridArray[StepIndex.Y + dy[i]][StepIndex.X + dx[i]]->DisableCollision();
                 break;
             case 4:
                 GridArray[StepIndex.Y + dy[i]][StepIndex.X + dx[i]]->TileType = ETileType::Tile4;
+                GridArray[StepIndex.Y + dy[i]][StepIndex.X + dx[i]]->DisableCollision();
                 break;
             case 5:
                 GridArray[StepIndex.Y + dy[i]][StepIndex.X + dx[i]]->TileType = ETileType::Tile5;
+                GridArray[StepIndex.Y + dy[i]][StepIndex.X + dx[i]]->DisableCollision();
                 break;
             case 6:
                 GridArray[StepIndex.Y + dy[i]][StepIndex.X + dx[i]]->TileType = ETileType::Tile6;
+                GridArray[StepIndex.Y + dy[i]][StepIndex.X + dx[i]]->DisableCollision();
                 break;
             case 7:
                 GridArray[StepIndex.Y + dy[i]][StepIndex.X + dx[i]]->TileType = ETileType::Tile7;
+                GridArray[StepIndex.Y + dy[i]][StepIndex.X + dx[i]]->DisableCollision();
                 break;
             case 8:
                 GridArray[StepIndex.Y + dy[i]][StepIndex.X + dx[i]]->TileType = ETileType::Tile8;
+                GridArray[StepIndex.Y + dy[i]][StepIndex.X + dx[i]]->DisableCollision();
                 break;
             default:
                 break;

@@ -7,6 +7,7 @@
 
 class FieldMap;
 class AGridField;
+class ATile;
 
 UCLASS()
 class ZOMBIESWEEPER_API AZSGameMode : public AGameModeBase
@@ -20,8 +21,22 @@ public:
 	AGridField* Field;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "GameMode")
-	TSubclassOf<AGridField> BP_Map;
-protected:
+	FIntPoint StartXY;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "GameMode")
+	FIntPoint TargetXY;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "GameMode")
+	TSubclassOf<AGridField> BP_Map;
+
+	UPROPERTY()
+	ATile* TileInstance;
+
+protected:
+	UFUNCTION()
+	void BindTileOverlapEvent(ATile* Tile);
+
+	UFUNCTION()
+	void OnTileOverlap(FIntPoint TileIndex);
 private:
 };
