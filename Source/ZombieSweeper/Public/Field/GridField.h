@@ -7,6 +7,7 @@
 
 class FieldMap;
 class ATile;
+enum class ETileType : uint8;
 
 UCLASS()
 class ZOMBIESWEEPER_API AGridField : public AActor
@@ -15,12 +16,14 @@ class ZOMBIESWEEPER_API AGridField : public AActor
 	
 public:	
 	AGridField();
+	virtual void BeginPlay() override;
+	
 	FieldMap* MapData;
 
 protected:
-	virtual void BeginPlay() override;
 	void SetTile(int8 X, int8 Y, int8 index);
-
+	
+	ETileType IndexToTileType(int8 index);
 
 	TArray<TArray<ATile*>> GridArray;
 

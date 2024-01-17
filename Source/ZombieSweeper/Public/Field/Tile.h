@@ -20,7 +20,8 @@ enum class ETileType : uint8
 	Tile6,
 	Tile7,
 	Tile8,
-	TileOpen
+	TileOpen,
+	TileZombie
 };
 
 
