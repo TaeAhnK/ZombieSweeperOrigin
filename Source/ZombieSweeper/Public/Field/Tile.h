@@ -7,6 +7,7 @@
 
 class UPaperSprite;
 class UPaperSpriteComponent;
+class UBoxComponent;
 
 UENUM(BlueprintType)
 enum class ETileType : uint8
@@ -25,6 +26,7 @@ enum class ETileType : uint8
 	TileZombie
 };
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnTileOverlap, FIntPoint, TileIndex);
 
 UCLASS()
 class ZOMBIESWEEPER_API ATile : public AActor
@@ -33,7 +35,9 @@ class ZOMBIESWEEPER_API ATile : public AActor
 	
 public:	
 	ATile();
+	virtual void BeginPlay() override;
 	void SetSprite();
+	void DisableCollision();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Tile")
 	ETileType TileType;
@@ -46,6 +50,14 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Tile")
 	UPaperSpriteComponent* PaperMesh;
-protected:
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Collide")
+	UBoxComponent* CollideBox;
+
+	UPROPERTY(BlueprintAssignable, Category = "Collide")
+	FOnTileOverlap OnTileOverlapEvent;
+
+protected:
+	UFUNCTION()
+	void OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 };

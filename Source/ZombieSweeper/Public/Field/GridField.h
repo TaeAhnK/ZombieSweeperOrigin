@@ -17,15 +17,14 @@ class ZOMBIESWEEPER_API AGridField : public AActor
 public:	
 	AGridField();
 	virtual void BeginPlay() override;
-	
+	void OpenTile(FIntPoint StepIndex);
+
 	FieldMap* MapData;
+	TArray<TArray<ATile*>> GridArray;
 
 protected:
-	void OpenTile(FIntPoint StepIndex);
 	
 	ETileType IndexToTileType(int8 index);
-
-	TArray<TArray<ATile*>> GridArray;
 
 	UPROPERTY(EditAnywhere, Category = Grid)
 	int32 GridWidth;
